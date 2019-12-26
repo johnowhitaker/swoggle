@@ -26,8 +26,7 @@ Fill me in please! Don't forget code examples:
 <div class="input_area" markdown="1">
 
 ```python
-# Example here
-# say_hello('Name')
+dice()
 ```
 
 </div>
@@ -36,7 +35,7 @@ Fill me in please! Don't forget code examples:
 
 
 
-    'Hello Name!'
+    6
 
 
 
