@@ -5,7 +5,7 @@ title: Swoggle
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "API details."
+summary: "TODO: API details. "
 ---
 <!--
 
@@ -24,7 +24,7 @@ summary: "API details."
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="The-basic-ideas">The basic ideas<a class="anchor-link" href="#The-basic-ideas">&#182;</a></h1><p>Want a representation of the board.</p>
+<h1 id="The-basic-ideas">The basic ideas<a class="anchor-link" href="#The-basic-ideas">&#182;</a></h1><p>The board is an 8x8 grid of cells. We'll use a 'Cell' class to represent them, with the following attributes:</p>
 <p>cell = {'x', 'y', 'drone':bool, 'player':PID, 'base':PID}</p>
 
 </div>
@@ -42,7 +42,7 @@ summary: "API details."
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Cell" class="doc_header"><code>class</code> <code>Cell</code><a href="https://github.com/johnowhitaker/swoggle/tree/master/swoggle/core.py#L7" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Cell</code>(<strong><code>x</code></strong>, <strong><code>y</code></strong>, <strong><code>drone</code></strong>=<em><code>False</code></em>, <strong><code>player</code></strong>=<em><code>None</code></em>, <strong><code>base</code></strong>=<em><code>None</code></em>)</p>
+<h2 id="Cell" class="doc_header"><code>class</code> <code>Cell</code><a href="https://github.com/johnowhitaker/swoggle/tree/master/swoggle/core.py#L6" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Cell</code>(<strong><code>x</code></strong>, <strong><code>y</code></strong>, <strong><code>drone</code></strong>=<em><code>False</code></em>, <strong><code>player</code></strong>=<em><code>None</code></em>, <strong><code>base</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Represent a cell on the game board</p>
 
@@ -95,6 +95,21 @@ summary: "API details."
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The above two run as tests - integrated in the NB, and easy to play with interactively.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-board-representation">The board representation<a class="anchor-link" href="#The-board-representation">&#182;</a></h3><p>A matrix of cells (the board), as well as the jail (for captured players).</p>
+<p>Also need a way to do moves. Done with move(player, start, end, dice roll, drone, powerjump) where drone and powerjump are special moves.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
@@ -107,7 +122,7 @@ summary: "API details."
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="dice" class="doc_header"><code>dice</code><a href="https://github.com/johnowhitaker/swoggle/tree/master/swoggle/core.py#L32" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>dice</code>()</p>
+<h2 id="Board" class="doc_header"><code>class</code> <code>Board</code><a href="https://github.com/johnowhitaker/swoggle/tree/master/swoggle/core.py#L33" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Board</code>()</p>
 </blockquote>
 
 </div>
@@ -120,105 +135,9 @@ summary: "API details."
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>There is some explanation here, and an example:</p>
-
+<h3 id="Trial-game">Trial game<a class="anchor-link" href="#Trial-game">&#182;</a></h3>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dice</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>6</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># assert say_hello(&quot;Jeremy&quot;)==&quot;Hello Jeremy!&quot; # Test function</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="mf">5.5</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>6</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="Board" class="doc_header"><code>class</code> <code>Board</code><a href="https://github.com/johnowhitaker/swoggle/tree/master/swoggle/core.py#L38" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Board</code>()</p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -318,7 +237,120 @@ Moved 1 (3, 3) (4, 4)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="n">drone</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># b.move(1, (4, 4), (7, 7), 5, drone=True) # P1 defeats P2</span>
+<span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="n">powerjump</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Testing powerjump</span>
+<span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Player 1 sent to Swoggle Spa
+Drone destroyed
+Moved 2 (7, 7) (4, 4)
+[..1][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][2..][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][..2]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># Doesn&#39;t escape with 4 or below</span>
+<span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Player 1 escaped
+[1.1][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][2..][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][..2]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Player 2 sent to Swoggle Spa
+Moved 1 (0, 0) (4, 4)
+[..1][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][1..][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][..2]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -333,6 +365,14 @@ Moved 1 (3, 3) (4, 4)
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Player 1 defeated player 2
 Moved 1 (4, 4) (7, 7)
+[1.1][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
 </pre>
 </div>
 </div>
@@ -341,39 +381,14 @@ Moved 1 (4, 4) (7, 7)
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[1.1][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][.d.]
-</pre>
-</div>
-</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>TODO:
+Have to move 1 square if you roll a 1
+Can move ont own base without defeating oneself!</p>
 
 </div>
 </div>
-
 </div>
 </div>
  

@@ -1,11 +1,11 @@
 ---
 
-title: Project name here
+title: Swoggle Game Engine
 
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "Summary description here."
+summary: "Implements a silly game we invented last Christmas and have been playing recently."
 ---
 <!--
 
@@ -31,13 +31,13 @@ summary: "Summary description here."
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Install">Install<a class="anchor-link" href="#Install">&#182;</a></h2>
+<h2 id="Install-(Not-on-pip-yet!!)">Install (Not on pip yet!!)<a class="anchor-link" href="#Install-(Not-on-pip-yet!!)">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>pip install your_project_name</code></p>
+<p><code>pip install swoggle</code></p>
 
 </div>
 </div>
@@ -50,7 +50,7 @@ summary: "Summary description here."
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Fill me in please! Don't forget code examples:</p>
+<p>To start, you create a board and populate it with some players and some drones:</p>
 
 </div>
 </div>
@@ -60,7 +60,16 @@ summary: "Summary description here."
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dice</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create a board</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">Board</span><span class="p">()</span>
+
+<span class="c1"># Add two players (with bases) and a central drone</span>
+<span class="n">b</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">player</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="mi">1</span> 
+<span class="n">b</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">player</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">b</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">b</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">drone</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -72,12 +81,312 @@ summary: "Summary description here."
 
 <div class="output_area">
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1.1][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][.d.][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][2.2]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Players can move (after rolling a dice). For example, player 1 could move to the square with a drone:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># Only works if dice_roll is high enough</span>
+<span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Moved 1 (0, 0) (3, 3)
+[..1][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][1d.][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][2.2]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can move with the drone, but only half as far:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="n">drone</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Only works if dice_roll is high enough</span>
+<span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Moved 1 (3, 3) (6, 4)
+[..1][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][1d.][...][...][...]
+[...][...][...][...][...][...][...][2.2]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can leave the drone behind to move elsewhere. But you cannot take an occupied base without the drone:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span> <span class="c1"># No drone - no luck</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Invalid Move 1 (6, 4) (7, 7)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>6</pre>
+<pre>False</pre>
 </div>
 
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can take a droned player with a drone for yourself or a powerjump:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">6</span><span class="p">,</span> <span class="n">powerjump</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Player 1 sent to Swoggle Spa
+Drone destroyed
+Moved 2 (7, 7) (6, 4)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[..1][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][2..][...][...][...]
+[...][...][...][...][...][...][...][..2]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now player 1 must try to escape, by rolling a 5 ot 6</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span> <span class="c1"># No escape with a 4</span>
+<span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># Escaped</span>
+<span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Player 1 did not escape
+Player 1 escaped
+[1.1][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][2..][...][...][...]
+[...][...][...][...][...][...][...][..2]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span> <span class="c1"># Capture 2</span>
+<span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># Take 2&#39;s base to win the game</span>
+<span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Player 2 sent to Swoggle Spa
+Moved 1 (0, 0) (6, 4)
+Player 1 defeated player 2
+Moved 1 (6, 4) (7, 7)
+[1.1][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
+</pre>
+</div>
 </div>
 
 </div>

@@ -8,35 +8,234 @@
 
 -->
 
-# Project name here
+# Swoggle Game Engine
 
-> Summary description here.
+> Implements a silly game we invented last Christmas and have been playing recently.
 
 
 This file will become your README and also the index of your documentation.
 
-## Install
+## Install (Not on pip yet!!)
 
-`pip install your_project_name`
+`pip install swoggle`
 
 ## How to use
 
-Fill me in please! Don't forget code examples:
+To start, you create a board and populate it with some players and some drones:
 <div class="codecell" markdown="1">
 <div class="input_area" markdown="1">
 
 ```python
-dice()
+# Create a board
+b = Board()
+
+# Add two players (with bases) and a central drone
+b.board[0][0].player = 1
+b.board[0][0].base = 1 
+b.board[7][7].player = 2
+b.board[7][7].base = 2
+b.board[3][3].drone = True
+b.show()
 ```
 
 </div>
 <div class="output_area" markdown="1">
 
+    [1.1][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][.d.][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][2.2]
+
+
+</div>
+
+</div>
+
+Players can move (after rolling a dice). For example, player 1 could move to the square with a drone:
+<div class="codecell" markdown="1">
+<div class="input_area" markdown="1">
+
+```python
+b.move(1, (0, 0), (3, 3), 5) # Only works if dice_roll is high enough
+b.show()
+```
+
+</div>
+<div class="output_area" markdown="1">
+
+    Moved 1 (0, 0) (3, 3)
+    [..1][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][1d.][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][2.2]
+
+
+</div>
+
+</div>
+
+You can move with the drone, but only half as far:
+<div class="codecell" markdown="1">
+<div class="input_area" markdown="1">
+
+```python
+b.move(1, (3, 3), (6, 4), 5, drone=True) # Only works if dice_roll is high enough
+b.show()
+```
+
+</div>
+<div class="output_area" markdown="1">
+
+    Moved 1 (3, 3) (6, 4)
+    [..1][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][1d.][...][...][...]
+    [...][...][...][...][...][...][...][2.2]
+
+
+</div>
+
+</div>
+
+You can leave the drone behind to move elsewhere. But you cannot take an occupied base without the drone:
+<div class="codecell" markdown="1">
+<div class="input_area" markdown="1">
+
+```python
+b.move(1, (6, 4), (7, 7), 6) # No drone - no luck
+```
+
+</div>
+<div class="output_area" markdown="1">
+
+    Invalid Move 1 (6, 4) (7, 7)
 
 
 
-    6
 
+
+    False
+
+
+
+</div>
+
+</div>
+
+You can take a droned player with a drone for yourself or a powerjump:
+<div class="codecell" markdown="1">
+<div class="input_area" markdown="1">
+
+```python
+b.move(2, (7, 7), (6, 4), 6, powerjump=True)
+```
+
+</div>
+<div class="output_area" markdown="1">
+
+    Player 1 sent to Swoggle Spa
+    Drone destroyed
+    Moved 2 (7, 7) (6, 4)
+
+
+
+
+
+    True
+
+
+
+</div>
+
+</div>
+<div class="codecell" markdown="1">
+<div class="input_area" markdown="1">
+
+```python
+b.show()
+```
+
+</div>
+<div class="output_area" markdown="1">
+
+    [..1][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][2..][...][...][...]
+    [...][...][...][...][...][...][...][..2]
+
+
+</div>
+
+</div>
+
+Now player 1 must try to escape, by rolling a 5 ot 6
+<div class="codecell" markdown="1">
+<div class="input_area" markdown="1">
+
+```python
+b.move(1, (0, 0), (0, 0), 4) # No escape with a 4
+b.move(1, (0, 0), (0, 0), 5) # Escaped
+b.show()
+```
+
+</div>
+<div class="output_area" markdown="1">
+
+    Player 1 did not escape
+    Player 1 escaped
+    [1.1][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][2..][...][...][...]
+    [...][...][...][...][...][...][...][..2]
+
+
+</div>
+
+</div>
+<div class="codecell" markdown="1">
+<div class="input_area" markdown="1">
+
+```python
+b.move(1, (0, 0), (6, 4), 6) # Capture 2
+b.move(1, (6, 4), (7, 7), 5) # Take 2's base to win the game
+b.show()
+```
+
+</div>
+<div class="output_area" markdown="1">
+
+    Player 2 sent to Swoggle Spa
+    Moved 1 (0, 0) (6, 4)
+    Player 1 defeated player 2
+    Moved 1 (6, 4) (7, 7)
+    [1.1][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
 
 
 </div>

@@ -3,7 +3,6 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"Cell": "00_core.ipynb",
-         "dice": "00_core.ipynb",
          "Board": "00_core.ipynb"}
 
 modules = ["core.py"]
