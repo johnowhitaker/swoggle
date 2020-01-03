@@ -70,11 +70,13 @@ class Board:
             if self.board[xe][ye].player and drone==False: # Defended
                 return False
 
-
-
         # Check if dest is droned player
         if (self.board[xe][ye].player != None) and (self.board[xe][ye].drone) and not (drone or powerjump):
             return False
+
+        # If you rolled a 1, you have to move 1
+        if dice_roll == 1:
+            if (xe==xe)
 
 
         # Maaaaaybe see if there are drones in the way?
