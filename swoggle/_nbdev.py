@@ -3,9 +3,12 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"Cell": "00_core.ipynb",
-         "Board": "00_core.ipynb"}
+         "Board": "00_core.ipynb",
+         "Swoggle": "01_ai.ipynb",
+         "RandomAgent": "01_ai.ipynb"}
 
-modules = ["core.py"]
+modules = ["core.py",
+           "ai.py"]
 
 git_url = "https://github.com/johnowhitaker/swoggle/tree/master/"
 

@@ -10,8 +10,8 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: Swoggle
-      url: /core
+      title: Title
+      url: /ai
     output: web
     title: swoggle
   output: web

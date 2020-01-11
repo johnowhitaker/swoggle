@@ -35,6 +35,14 @@ class Board:
     board = [[Cell(x, y) for x in range(8)] for y in range(8)]
     jail = []
 
+    def __init__(self):
+        self.board = [[Cell(x, y) for x in range(8)] for y in range(8)]
+        self.jail = []
+
+    def reset(self):
+        self.board = [[Cell(x, y) for x in range(8)] for y in range(8)]
+        self.jail = []
+
     def is_valid_move(self, player, start_loc, end_loc, dice_roll, drone, powerjump):
         xs, ys, xe, ye = *start_loc, *end_loc
 
@@ -44,7 +52,6 @@ class Board:
 
         # Check that player is in start loc
         if self.board[xs][ys].player != player:
-            print(2)
             return False
 
         # Check that there's a drone in the start loc if drone
@@ -74,9 +81,10 @@ class Board:
         if (self.board[xe][ye].player != None) and (self.board[xe][ye].drone) and not (drone or powerjump):
             return False
 
-        # If you rolled a 1, you have to move 1
+        # If you rolled a 1, you have to move 1 (no camping in the same place)
         if dice_roll == 1:
-            if (xe==xe)
+            if (xs == xe) and (ys == ye):
+                return False
 
 
         # Maaaaaybe see if there are drones in the way?
@@ -109,10 +117,14 @@ class Board:
         xs, ys, xe, ye = *start_loc, *end_loc
 
         # Check for player clashes
-        if self.board[xe][ye].player != None: # Valid move so we capture them
+        if self.board[xe][ye].player != None and self.board[xe][ye].player != player: # Valid move so we capture them
             pid = self.board[xe][ye].player
             print('Player', pid, 'sent to Swoggle Spa')
-            self.board[xe][ye].player = None
+            # Clear jailed player
+            for row in self.board:
+                for cell in row:
+                    if cell.player == pid:
+                        cell.player = None
             self.jail.append(pid)
 
         # Move player
@@ -132,7 +144,7 @@ class Board:
             self.board[xe][ye].drone = True
 
         # Check for base defeats
-        if self.board[xe][ye].base != None: # If move is valid, we defeated the base
+        if self.board[xe][ye].base != None and self.board[xe][ye].base != player: # If move is valid, we defeated the base
             # Player goes to own base, base and player of defeated charachter disappear
             pid = self.board[xe][ye].base
             print("Player", str(player), "defeated player", pid)
@@ -146,6 +158,8 @@ class Board:
                     # Return attacking player
                     if cell.base == player:
                         cell.player = player
+            if pid in self.jail:
+                self.jail.remove(pid) # If they were in jail, remove them
 
 
         print('Moved', player, start_loc, end_loc)
@@ -170,3 +184,4 @@ class Board:
                     s += '.'
                 s += ']'
             print(s)
+        print('Spa:', self.jail)

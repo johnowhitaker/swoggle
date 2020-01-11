@@ -1,11 +1,11 @@
 ---
 
-title: Swoggle
+title: Title
 
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "TODO: API details. "
+summary: "summary"
 ---
 <!--
 
@@ -21,6 +21,14 @@ summary: "TODO: API details. "
     
 <div class="cell border-box-sizing code_cell rendered">
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Swoggle">Swoggle<a class="anchor-link" href="#Swoggle">&#182;</a></h1><p>This defines the game of swoggle - a silly game played on a chessboard that we came up with over the holidays.</p>
+<p>In this notebook, we deinfe the game, specify valid moves and check that the basic functionality works.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -186,6 +194,7 @@ summary: "TODO: API details. "
 [...][...][...][...][...][...][...][...]
 [...][...][...][...][...][...][...][...]
 [...][...][...][...][...][...][...][2.2]
+Spa: []
 next
 Moved 1 (0, 0) (1, 1)
 [..1][...][...][...][...][...][...][...]
@@ -196,6 +205,7 @@ Moved 1 (0, 0) (1, 1)
 [...][...][...][...][...][...][...][...]
 [...][...][...][...][...][...][...][...]
 [...][...][...][...][...][...][...][2.2]
+Spa: []
 Invalid Move 1 (1, 1) (6, 6)
 [..1][...][...][...][...][...][...][...]
 [...][1..][...][...][...][...][...][...]
@@ -205,6 +215,7 @@ Invalid Move 1 (1, 1) (6, 6)
 [...][...][...][...][...][...][...][...]
 [...][...][...][...][...][...][...][...]
 [...][...][...][...][...][...][...][2.2]
+Spa: []
 Invalid Move 1 (1, 1) (4, 4)
 [..1][...][...][...][...][...][...][...]
 [...][1..][...][...][...][...][...][...]
@@ -214,6 +225,7 @@ Invalid Move 1 (1, 1) (4, 4)
 [...][...][...][...][...][...][...][...]
 [...][...][...][...][...][...][...][...]
 [...][...][...][...][...][...][...][2.2]
+Spa: []
 Moved 1 (1, 1) (3, 3)
 Moved 1 (3, 3) (4, 4)
 [..1][...][...][...][...][...][...][...]
@@ -224,6 +236,7 @@ Moved 1 (3, 3) (4, 4)
 [...][...][...][...][...][...][...][...]
 [...][...][...][...][...][...][...][...]
 [...][...][...][...][...][...][...][2.2]
+Spa: []
 </pre>
 </div>
 </div>
@@ -263,6 +276,7 @@ Moved 2 (7, 7) (4, 4)
 [...][...][...][...][...][...][...][...]
 [...][...][...][...][...][...][...][...]
 [...][...][...][...][...][...][...][..2]
+Spa: [1]
 </pre>
 </div>
 </div>
@@ -299,6 +313,7 @@ Moved 2 (7, 7) (4, 4)
 [...][...][...][...][...][...][...][...]
 [...][...][...][...][...][...][...][...]
 [...][...][...][...][...][...][...][..2]
+Spa: []
 </pre>
 </div>
 </div>
@@ -336,6 +351,7 @@ Moved 1 (0, 0) (4, 4)
 [...][...][...][...][...][...][...][...]
 [...][...][...][...][...][...][...][...]
 [...][...][...][...][...][...][...][..2]
+Spa: [2]
 </pre>
 </div>
 </div>
@@ -373,6 +389,7 @@ Moved 1 (4, 4) (7, 7)
 [...][...][...][...][...][...][...][...]
 [...][...][...][...][...][...][...][...]
 [...][...][...][...][...][...][...][...]
+Spa: []
 </pre>
 </div>
 </div>
@@ -383,12 +400,39 @@ Moved 1 (4, 4) (7, 7)
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>TODO:
-Have to move 1 square if you roll a 1
-Can move ont own base without defeating oneself!</p>
+<h1 id="We-can-export-the-module-from-here:">We can export the module from here:<a class="anchor-link" href="#We-can-export-the-module-from-here:">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">nbdev.export</span> <span class="k">import</span> <span class="n">notebook2script</span>
+<span class="n">notebook2script</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Converted 00_core.ipynb.
+Converted 01_ai.ipynb.
+Converted index.ipynb.
+</pre>
+</div>
+</div>
 
 </div>
 </div>
+
 </div>
 </div>
  
