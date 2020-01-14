@@ -1,11 +1,11 @@
 ---
 
-title: Swoggle Game Engine
+title: Title
 
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "Implements a silly game we invented last Christmas and have been playing recently."
+summary: "summary"
 ---
 <!--
 
@@ -24,7 +24,8 @@ summary: "Implements a silly game we invented last Christmas and have been playi
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This file will become your README and also the index of your documentation.</p>
+<h1 id="Swoggle-Game-Engine">Swoggle Game Engine<a class="anchor-link" href="#Swoggle-Game-Engine">&#182;</a></h1><p>Implements a silly game we invented last Christmas and have been playing recently.</p>
+<p>Rules are TODO.</p>
 
 </div>
 </div>
@@ -50,7 +51,7 @@ summary: "Implements a silly game we invented last Christmas and have been playi
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To start, you create a board and populate it with some players and some drones:</p>
+<p>To get a board with the basic setup, use the swoggle class:</p>
 
 </div>
 </div>
@@ -60,16 +61,8 @@ summary: "Implements a silly game we invented last Christmas and have been playi
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create a board</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">Board</span><span class="p">()</span>
-
-<span class="c1"># Add two players (with bases) and a central drone</span>
-<span class="n">b</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">player</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">b</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="mi">1</span> 
-<span class="n">b</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">player</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">b</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">b</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">drone</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">Swoggle</span><span class="p">(</span><span class="n">agents</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">s</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -82,14 +75,14 @@ summary: "Implements a silly game we invented last Christmas and have been playi
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[1.1][...][...][...][...][...][...][...]
+<pre>[1.1][...][...][...][...][...][...][4.4]
 [...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
+[...][...][...][...][.d.][...][...][...]
+[...][...][.d.][...][...][...][...][...]
+[...][...][...][...][...][.d.][...][...]
 [...][...][...][.d.][...][...][...][...]
 [...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][2.2]
+[2.2][...][...][...][...][...][...][3.3]
 Spa: []
 </pre>
 </div>
@@ -111,8 +104,8 @@ Spa: []
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># Only works if dice_roll is high enough</span>
-<span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># Only works if dice_roll is high enough</span>
+<span class="n">s</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -125,15 +118,15 @@ Spa: []
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Moved 1 (0, 0) (3, 3)
-[..1][...][...][...][...][...][...][...]
+<pre>Moved 1 (0, 0) (3, 2)
+[..1][...][...][...][...][...][...][4.4]
 [...][...][...][...][...][...][...][...]
+[...][...][...][...][.d.][...][...][...]
+[...][...][1d.][...][...][...][...][...]
+[...][...][...][...][...][.d.][...][...]
+[...][...][...][.d.][...][...][...][...]
 [...][...][...][...][...][...][...][...]
-[...][...][...][1d.][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][2.2]
+[2.2][...][...][...][...][...][...][3.3]
 Spa: []
 </pre>
 </div>
@@ -155,8 +148,8 @@ Spa: []
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="n">drone</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Only works if dice_roll is high enough</span>
-<span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="n">drone</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Only works if dice_roll is high enough</span>
+<span class="n">s</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -169,15 +162,15 @@ Spa: []
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Moved 1 (3, 3) (6, 4)
-[..1][...][...][...][...][...][...][...]
+<pre>Moved 1 (3, 2) (1, 1)
+[..1][...][...][...][...][...][...][4.4]
+[...][1d.][...][...][...][...][...][...]
+[...][...][...][...][.d.][...][...][...]
 [...][...][...][...][...][...][...][...]
+[...][...][...][...][...][.d.][...][...]
+[...][...][...][.d.][...][...][...][...]
 [...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][1d.][...][...][...]
-[...][...][...][...][...][...][...][2.2]
+[2.2][...][...][...][...][...][...][3.3]
 Spa: []
 </pre>
 </div>
@@ -199,7 +192,7 @@ Spa: []
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span> <span class="c1"># No drone - no luck</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span> <span class="c1"># No drone - no luck</span>
 </pre></div>
 
     </div>
@@ -212,19 +205,9 @@ Spa: []
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Invalid Move 1 (6, 4) (7, 7)
+<pre>Invalid Move 1 (1, 1) (7, 0)
 </pre>
 </div>
-</div>
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>False</pre>
-</div>
-
 </div>
 
 </div>
@@ -243,7 +226,9 @@ Spa: []
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">6</span><span class="p">,</span> <span class="n">powerjump</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">6</span><span class="p">,</span> <span class="n">drone</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Put 1 in position</span>
+<span class="n">s</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">6</span><span class="p">,</span> <span class="n">powerjump</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># take one with a powerjump</span>
+<span class="n">s</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -256,53 +241,18 @@ Spa: []
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Player 1 sent to Swoggle Spa
+<pre>Moved 1 (1, 1) (4, 0)
+Player 1 sent to Swoggle Spa
 Drone destroyed
-Moved 2 (7, 7) (6, 4)
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>True</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[..1][...][...][...][...][...][...][...]
+Moved 2 (7, 0) (4, 0)
+[..1][...][...][...][...][...][...][4.4]
 [...][...][...][...][...][...][...][...]
+[...][...][...][...][.d.][...][...][...]
 [...][...][...][...][...][...][...][...]
+[2..][...][...][...][...][.d.][...][...]
+[...][...][...][.d.][...][...][...][...]
 [...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][2..][...][...][...]
-[...][...][...][...][...][...][...][..2]
+[..2][...][...][...][...][...][...][3.3]
 Spa: [1]
 </pre>
 </div>
@@ -324,9 +274,9 @@ Spa: [1]
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span> <span class="c1"># No escape with a 4</span>
-<span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># Escaped</span>
-<span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span> <span class="c1"># No escape with a 4</span>
+<span class="n">s</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># Escaped</span>
+<span class="n">s</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -341,14 +291,14 @@ Spa: [1]
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Player 1 did not escape
 Player 1 escaped
-[1.1][...][...][...][...][...][...][...]
+[1.1][...][...][...][...][...][...][4.4]
 [...][...][...][...][...][...][...][...]
+[...][...][...][...][.d.][...][...][...]
 [...][...][...][...][...][...][...][...]
+[2..][...][...][...][...][.d.][...][...]
+[...][...][...][.d.][...][...][...][...]
 [...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][2..][...][...][...]
-[...][...][...][...][...][...][...][..2]
+[..2][...][...][...][...][...][...][3.3]
 Spa: []
 </pre>
 </div>
@@ -363,9 +313,9 @@ Spa: []
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span> <span class="c1"># Capture 2</span>
-<span class="n">b</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># Take 2&#39;s base to win the game</span>
-<span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span> <span class="c1"># Capture 2</span>
+<span class="n">s</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># Take 2&#39;s base to win the game</span>
+<span class="n">s</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -379,17 +329,17 @@ Spa: []
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Player 2 sent to Swoggle Spa
-Moved 1 (0, 0) (6, 4)
+Moved 1 (0, 0) (4, 0)
 Player 1 defeated player 2
-Moved 1 (6, 4) (7, 7)
-[1.1][...][...][...][...][...][...][...]
+Moved 1 (4, 0) (7, 0)
+[1.1][...][...][...][...][...][...][4.4]
 [...][...][...][...][...][...][...][...]
+[...][...][...][...][.d.][...][...][...]
 [...][...][...][...][...][...][...][...]
+[...][...][...][...][...][.d.][...][...]
+[...][...][...][.d.][...][...][...][...]
 [...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
-[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][3.3]
 Spa: []
 </pre>
 </div>
@@ -401,7 +351,7 @@ Spa: []
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Adding-agents">Adding agents<a class="anchor-link" href="#Adding-agents">&#182;</a></h1><p>Use swoggle class</p>
+<h1 id="Adding-agents">Adding agents<a class="anchor-link" href="#Adding-agents">&#182;</a></h1><p>We have several agents to choose from. Let's create a game with 2 random agents and 2 basic agents and watch them play:</p>
 
 </div>
 </div>
@@ -411,7 +361,7 @@ Spa: []
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sr</span> <span class="o">=</span> <span class="n">Swoggle</span><span class="p">([</span><span class="n">RandomAgent</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sr</span> <span class="o">=</span> <span class="n">Swoggle</span><span class="p">([</span><span class="n">RandomAgent</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span><span class="o">+</span><span class="p">[</span><span class="n">BasicAgent</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
 <span class="n">sr</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
@@ -462,22 +412,17 @@ Spa: []
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>1 took 15 tries to guess a random move
-Moved 1 (1, 0) (0, 1)
-2 took 7 tries to guess a random move
-Moved 2 (1, 6) (2, 5)
-3 took 12 tries to guess a random move
-Moved 3 (7, 7) (7, 6)
-4 took 2 tries to guess a random move
-Moved 4 (4, 6) (6, 6)
-[..1][1..][...][...][...][...][...][..4]
+<pre>Moved 3 (6, 1) (7, 0)
+Player 4 defeated player 3
+Moved 4 (1, 6) (7, 7)
+[...][...][...][...][...][...][...][4.4]
 [...][...][...][...][...][...][...][...]
-[...][...][...][...][.d.][2..][...][...]
+[...][...][...][...][.d.][...][...][...]
 [...][...][.d.][...][...][...][...][...]
 [...][...][...][...][...][.d.][...][...]
 [...][...][...][.d.][...][...][...][...]
-[...][...][...][...][...][...][4..][...]
-[..2][...][...][...][...][...][3..][..3]
+[...][...][...][...][...][...][...][...]
+[...][...][...][...][...][...][...][...]
 Spa: []
 </pre>
 </div>
@@ -486,6 +431,13 @@ Spa: []
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Where-Next?">Where Next?<a class="anchor-link" href="#Where-Next?">&#182;</a></h1><p>The point of this exercise was to 1) Learn NBev and 2) Get a gae ready for RL experiments. So far so good :)</p>
+
+</div>
+</div>
 </div>
 </div>
  

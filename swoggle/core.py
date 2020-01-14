@@ -206,7 +206,7 @@ class Swoggle:
 
     def move(self, player, start_loc, end_loc, dice_roll, drone=False, powerjump=False):
         """ Moves a player not under internal agent control the does the agent's moves """
-        self.board.move(player, start_loc, end_loc, dice_roll, drone=False, powerjump=False)
+        self.board.move(player, start_loc, end_loc, dice_roll, drone=drone, powerjump=powerjump)
         for a in self.agents:
             a.move(self.board, self.dice())
 

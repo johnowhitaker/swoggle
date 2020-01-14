@@ -8,12 +8,16 @@
 
 -->
 
+# Title
+
+> summary
+
+
 # Swoggle Game Engine
 
-> Implements a silly game we invented last Christmas and have been playing recently.
+Implements a silly game we invented last Christmas and have been playing recently.
 
-
-This file will become your README and also the index of your documentation.
+Rules are TODO.
 
 ## Install (Not on pip yet!!)
 
@@ -21,34 +25,26 @@ This file will become your README and also the index of your documentation.
 
 ## How to use
 
-To start, you create a board and populate it with some players and some drones:
+To get a board with the basic setup, use the swoggle class:
 <div class="codecell" markdown="1">
 <div class="input_area" markdown="1">
 
 ```python
-# Create a board
-b = Board()
-
-# Add two players (with bases) and a central drone
-b.board[0][0].player = 1
-b.board[0][0].base = 1 
-b.board[7][7].player = 2
-b.board[7][7].base = 2
-b.board[3][3].drone = True
-b.show()
+s = Swoggle(agents=[])
+s.show()
 ```
 
 </div>
 <div class="output_area" markdown="1">
 
-    [1.1][...][...][...][...][...][...][...]
+    [1.1][...][...][...][...][...][...][4.4]
     [...][...][...][...][...][...][...][...]
-    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][.d.][...][...][...]
+    [...][...][.d.][...][...][...][...][...]
+    [...][...][...][...][...][.d.][...][...]
     [...][...][...][.d.][...][...][...][...]
     [...][...][...][...][...][...][...][...]
-    [...][...][...][...][...][...][...][...]
-    [...][...][...][...][...][...][...][...]
-    [...][...][...][...][...][...][...][2.2]
+    [2.2][...][...][...][...][...][...][3.3]
     Spa: []
 
 
@@ -61,22 +57,22 @@ Players can move (after rolling a dice). For example, player 1 could move to the
 <div class="input_area" markdown="1">
 
 ```python
-b.move(1, (0, 0), (3, 3), 5) # Only works if dice_roll is high enough
-b.show()
+s.move(1, (0, 0), (3, 2), 5) # Only works if dice_roll is high enough
+s.show()
 ```
 
 </div>
 <div class="output_area" markdown="1">
 
-    Moved 1 (0, 0) (3, 3)
-    [..1][...][...][...][...][...][...][...]
+    Moved 1 (0, 0) (3, 2)
+    [..1][...][...][...][...][...][...][4.4]
     [...][...][...][...][...][...][...][...]
+    [...][...][...][...][.d.][...][...][...]
+    [...][...][1d.][...][...][...][...][...]
+    [...][...][...][...][...][.d.][...][...]
+    [...][...][...][.d.][...][...][...][...]
     [...][...][...][...][...][...][...][...]
-    [...][...][...][1d.][...][...][...][...]
-    [...][...][...][...][...][...][...][...]
-    [...][...][...][...][...][...][...][...]
-    [...][...][...][...][...][...][...][...]
-    [...][...][...][...][...][...][...][2.2]
+    [2.2][...][...][...][...][...][...][3.3]
     Spa: []
 
 
@@ -89,22 +85,22 @@ You can move with the drone, but only half as far:
 <div class="input_area" markdown="1">
 
 ```python
-b.move(1, (3, 3), (6, 4), 5, drone=True) # Only works if dice_roll is high enough
-b.show()
+s.move(1, (3, 2), (1, 1), 5, drone=True) # Only works if dice_roll is high enough
+s.show()
 ```
 
 </div>
 <div class="output_area" markdown="1">
 
-    Moved 1 (3, 3) (6, 4)
-    [..1][...][...][...][...][...][...][...]
+    Moved 1 (3, 2) (1, 1)
+    [..1][...][...][...][...][...][...][4.4]
+    [...][1d.][...][...][...][...][...][...]
+    [...][...][...][...][.d.][...][...][...]
     [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][.d.][...][...]
+    [...][...][...][.d.][...][...][...][...]
     [...][...][...][...][...][...][...][...]
-    [...][...][...][...][...][...][...][...]
-    [...][...][...][...][...][...][...][...]
-    [...][...][...][...][...][...][...][...]
-    [...][...][...][...][1d.][...][...][...]
-    [...][...][...][...][...][...][...][2.2]
+    [2.2][...][...][...][...][...][...][3.3]
     Spa: []
 
 
@@ -117,20 +113,13 @@ You can leave the drone behind to move elsewhere. But you cannot take an occupie
 <div class="input_area" markdown="1">
 
 ```python
-b.move(1, (6, 4), (7, 7), 6) # No drone - no luck
+s.move(1, (1, 1), (7, 0), 6) # No drone - no luck
 ```
 
 </div>
 <div class="output_area" markdown="1">
 
-    Invalid Move 1 (6, 4) (7, 7)
-
-
-
-
-
-    False
-
+    Invalid Move 1 (1, 1) (7, 0)
 
 
 </div>
@@ -142,45 +131,26 @@ You can take a droned player with a drone for yourself or a powerjump:
 <div class="input_area" markdown="1">
 
 ```python
-b.move(2, (7, 7), (6, 4), 6, powerjump=True)
+s.move(1, (1, 1), (4, 0), 6, drone=True) # Put 1 in position
+s.move(2, (7, 0), (4, 0), 6, powerjump=True) # take one with a powerjump
+s.show()
 ```
 
 </div>
 <div class="output_area" markdown="1">
 
+    Moved 1 (1, 1) (4, 0)
     Player 1 sent to Swoggle Spa
     Drone destroyed
-    Moved 2 (7, 7) (6, 4)
-
-
-
-
-
-    True
-
-
-
-</div>
-
-</div>
-<div class="codecell" markdown="1">
-<div class="input_area" markdown="1">
-
-```python
-b.show()
-```
-
-</div>
-<div class="output_area" markdown="1">
-
-    [..1][...][...][...][...][...][...][...]
+    Moved 2 (7, 0) (4, 0)
+    [..1][...][...][...][...][...][...][4.4]
     [...][...][...][...][...][...][...][...]
+    [...][...][...][...][.d.][...][...][...]
     [...][...][...][...][...][...][...][...]
+    [2..][...][...][...][...][.d.][...][...]
+    [...][...][...][.d.][...][...][...][...]
     [...][...][...][...][...][...][...][...]
-    [...][...][...][...][...][...][...][...]
-    [...][...][...][...][...][...][...][...]
-    [...][...][...][...][2..][...][...][...]
-    [...][...][...][...][...][...][...][..2]
+    [..2][...][...][...][...][...][...][3.3]
     Spa: [1]
 
 
@@ -193,9 +163,9 @@ Now player 1 must try to escape, by rolling a 5 ot 6
 <div class="input_area" markdown="1">
 
 ```python
-b.move(1, (0, 0), (0, 0), 4) # No escape with a 4
-b.move(1, (0, 0), (0, 0), 5) # Escaped
-b.show()
+s.move(1, (0, 0), (0, 0), 4) # No escape with a 4
+s.move(1, (0, 0), (0, 0), 5) # Escaped
+s.show()
 ```
 
 </div>
@@ -203,14 +173,14 @@ b.show()
 
     Player 1 did not escape
     Player 1 escaped
-    [1.1][...][...][...][...][...][...][...]
+    [1.1][...][...][...][...][...][...][4.4]
     [...][...][...][...][...][...][...][...]
+    [...][...][...][...][.d.][...][...][...]
     [...][...][...][...][...][...][...][...]
+    [2..][...][...][...][...][.d.][...][...]
+    [...][...][...][.d.][...][...][...][...]
     [...][...][...][...][...][...][...][...]
-    [...][...][...][...][...][...][...][...]
-    [...][...][...][...][...][...][...][...]
-    [...][...][...][...][2..][...][...][...]
-    [...][...][...][...][...][...][...][..2]
+    [..2][...][...][...][...][...][...][3.3]
     Spa: []
 
 
@@ -221,26 +191,26 @@ b.show()
 <div class="input_area" markdown="1">
 
 ```python
-b.move(1, (0, 0), (6, 4), 6) # Capture 2
-b.move(1, (6, 4), (7, 7), 5) # Take 2's base to win the game
-b.show()
+s.move(1, (0, 0), (4, 0), 6) # Capture 2
+s.move(1, (4, 0), (7, 0), 5) # Take 2's base to win the game
+s.show()
 ```
 
 </div>
 <div class="output_area" markdown="1">
 
     Player 2 sent to Swoggle Spa
-    Moved 1 (0, 0) (6, 4)
+    Moved 1 (0, 0) (4, 0)
     Player 1 defeated player 2
-    Moved 1 (6, 4) (7, 7)
-    [1.1][...][...][...][...][...][...][...]
+    Moved 1 (4, 0) (7, 0)
+    [1.1][...][...][...][...][...][...][4.4]
     [...][...][...][...][...][...][...][...]
+    [...][...][...][...][.d.][...][...][...]
     [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][.d.][...][...]
+    [...][...][...][.d.][...][...][...][...]
     [...][...][...][...][...][...][...][...]
-    [...][...][...][...][...][...][...][...]
-    [...][...][...][...][...][...][...][...]
-    [...][...][...][...][...][...][...][...]
-    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][3.3]
     Spa: []
 
 
@@ -250,12 +220,12 @@ b.show()
 
 # Adding agents
 
-Use swoggle class
+We have several agents to choose from. Let's create a game with 2 random agents and 2 basic agents and watch them play:
 <div class="codecell" markdown="1">
 <div class="input_area" markdown="1">
 
 ```python
-sr = Swoggle([RandomAgent(i+1) for i in range(4)])
+sr = Swoggle([RandomAgent(i+1) for i in range(2)]+[BasicAgent(i+3) for i in range(2)])
 sr.show()
 ```
 
@@ -288,25 +258,24 @@ sr.show()
 </div>
 <div class="output_area" markdown="1">
 
-    1 took 15 tries to guess a random move
-    Moved 1 (1, 0) (0, 1)
-    2 took 7 tries to guess a random move
-    Moved 2 (1, 6) (2, 5)
-    3 took 12 tries to guess a random move
-    Moved 3 (7, 7) (7, 6)
-    4 took 2 tries to guess a random move
-    Moved 4 (4, 6) (6, 6)
-    [..1][1..][...][...][...][...][...][..4]
+    Moved 3 (6, 1) (7, 0)
+    Player 4 defeated player 3
+    Moved 4 (1, 6) (7, 7)
+    [...][...][...][...][...][...][...][4.4]
     [...][...][...][...][...][...][...][...]
-    [...][...][...][...][.d.][2..][...][...]
+    [...][...][...][...][.d.][...][...][...]
     [...][...][.d.][...][...][...][...][...]
     [...][...][...][...][...][.d.][...][...]
     [...][...][...][.d.][...][...][...][...]
-    [...][...][...][...][...][...][4..][...]
-    [..2][...][...][...][...][...][3..][..3]
+    [...][...][...][...][...][...][...][...]
+    [...][...][...][...][...][...][...][...]
     Spa: []
 
 
 </div>
 
 </div>
+
+# Where Next?
+
+The point of this exercise was to 1) Learn NBev and 2) Get a gae ready for RL experiments. So far so good :)

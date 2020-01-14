@@ -6,7 +6,8 @@ index = {"Cell": "00_core.ipynb",
          "Board": "00_core.ipynb",
          "Swoggle": "00_core.ipynb",
          "RandomAgent": "01_ai.ipynb",
-         "BasicAgent": "01_ai.ipynb"}
+         "BasicAgent": "01_ai.ipynb",
+         "win_rates": "01_ai.ipynb"}
 
 modules = ["core.py",
            "ai.py"]
