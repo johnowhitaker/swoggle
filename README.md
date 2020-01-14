@@ -19,7 +19,9 @@ Implements a silly game we invented last Christmas and have been playing recentl
 
 Rules are TODO.
 
-## Install (Not on pip yet!!)
+## Install 
+
+Should be as easy as:
 
 `pip install swoggle`
 
